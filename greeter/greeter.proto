@@ -1,6 +1,5 @@
 syntax = "proto3";
 package greeter;
-option go_package = "./greeter";
 
 service Greeter {
   // Sends a greeting

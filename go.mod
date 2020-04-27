@@ -1,4 +1,4 @@
-module greeter
+module github.com/myorb/greeter
 
 go 1.14
 
