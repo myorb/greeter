@@ -1,4 +1,9 @@
 package main
 
-type Server struct {
+import (
+	"github.com/myorb/greeter/greeter"
+)
+
+type server struct {
+	greeter.UnimplementedGreeterServer
 }
