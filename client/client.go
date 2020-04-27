@@ -1,6 +1,9 @@
 package main
 
 import (
+	"context"
+	"log"
+
 	"google.golang.org/grpc"
 
 	"github.com/myorb/greeter/greeter"
@@ -13,4 +16,9 @@ func main() {
 	}
 	gc := greeter.NewGreeterClient(c)
 
+	res, err := gc.SayHello(context.TODO(), &greeter.HelloRequest{Name: "Alex"})
+	if err != nil {
+		panic(err)
+	}
+	log.Println(res.Message)
 }

@@ -4,6 +4,7 @@ import (
 	"log"
 	"net"
 
+	"github.com/myorb/greeter/games"
 	"github.com/myorb/greeter/greeter"
 	"google.golang.org/grpc"
 )
@@ -14,8 +15,13 @@ func main() {
 		log.Fatalf("failed to listen: %v", err)
 	}
 
+	gamesCollection := NewCollection()
+
 	s := grpc.NewServer()
-	greeter.RegisterGreeterServer(s, &server{})
+	srv := &server{repository: gamesCollection}
+	greeter.RegisterGreeterServer(s, srv)
+	games.RegisterGamesServer(s, srv)
+	log.Println("This is log form main")
 	if err := s.Serve(lis); err != nil {
 		log.Fatalf("failed to serve: %v", err)
 	}

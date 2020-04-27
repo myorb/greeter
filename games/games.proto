@@ -1,0 +1,44 @@
+syntax = "proto3";
+package games;
+
+service Games {
+  rpc Get (GetRequest) returns (Game) {}
+  rpc Create (CreateRequest) returns (Game) {}
+  rpc Update (UpdateRequest) returns (BoolResponce) {}
+  rpc Delete (DeleteRequest) returns (BoolResponce) {}
+}
+
+message Game {
+	string id  = 1;
+	int64 selected = 2;
+  Rmax rmax = 3;
+}
+
+message Rmax {
+	int32 x = 1;
+	int32 y = 2;
+	int32 length = 3;
+}
+
+message BoolResponce {
+  bool status = 1;
+}
+
+message GetRequest {
+  string id = 1;
+}
+
+message CreateRequest {
+  int64 selected = 1;
+  Rmax rmax = 2;
+}
+
+message UpdateRequest {
+	string id  = 1;
+  int64 selected = 2;
+  Rmax rmax = 3;
+}
+
+message DeleteRequest {
+	string id  = 1;
+}
