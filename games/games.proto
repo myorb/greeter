@@ -6,7 +6,7 @@ service Games {
   rpc Create (CreateRequest) returns (Game) {}
   rpc Update (UpdateRequest) returns (BoolResponce) {}
   rpc Delete (DeleteRequest) returns (BoolResponce) {}
-  rpc Sync (stream GetRequest) returns (stream Game) {}
+  rpc Sync (stream UpdateRequest) returns (stream Game) {}
 }
 
 message Game {

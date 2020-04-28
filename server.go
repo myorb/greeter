@@ -2,6 +2,8 @@ package main
 
 import (
 	"context"
+	"io"
+	"log"
 
 	"games/games"
 )
@@ -44,6 +46,46 @@ func (s *server) Delete(c context.Context, r *games.DeleteRequest) (*games.BoolR
 		return nil, err
 	}
 	return &games.BoolResponce{Status: true}, nil
+}
+
+// Sync func
+func (s *server) Sync(srv games.Games_SyncServer) error {
+	log.Println("start new server")
+	ctx := srv.Context()
+
+	for {
+		select {
+		case <-ctx.Done():
+			return ctx.Err()
+		default:
+		}
+
+		// receive data from stream
+		req, err := srv.Recv()
+		if err == io.EOF {
+			log.Println("exit")
+			return nil
+		}
+		if err != nil {
+			log.Printf("receive error %v", err)
+			continue
+		}
+
+		if err = s.repository.UpdateGame(&Game{ID: req.Id, Selected: req.Selected, Rmax: Rmax{X: req.Rmax.X, Y: req.Rmax.Y, Length: req.Rmax.Length}}); err != nil {
+			return err
+		}
+
+		g, err := s.repository.GetGame(req.Id)
+		if err != nil {
+			return err
+		}
+		resp := convert(g)
+
+		if err := srv.Send(resp); err != nil {
+			return err
+		}
+		log.Printf("game updated %s", g.ID)
+	}
 }
 
 // converting form grpc to Game resp struct
