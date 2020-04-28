@@ -1,4 +1,4 @@
-module github.com/myorb/greeter
+module games
 
 go 1.14
 

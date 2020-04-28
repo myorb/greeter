@@ -2,20 +2,12 @@ package main
 
 import (
 	"context"
-	"fmt"
 
-	"github.com/myorb/greeter/games"
-	"github.com/myorb/greeter/greeter"
+	"games/games"
 )
 
 type server struct {
-	greeter.UnimplementedGreeterServer
-	games.UnimplementedGamesServer
 	repository *Collection
-}
-
-func (*server) SayHello(ctx context.Context, req *greeter.HelloRequest) (*greeter.HelloReply, error) {
-	return &greeter.HelloReply{Message: fmt.Sprintf("hi %s", req.Name)}, nil
 }
 
 // Get func

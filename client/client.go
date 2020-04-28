@@ -6,7 +6,7 @@ import (
 
 	"google.golang.org/grpc"
 
-	"github.com/myorb/greeter/greeter"
+	"games/games"
 )
 
 func main() {
@@ -14,11 +14,12 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	gc := greeter.NewGreeterClient(c)
 
-	res, err := gc.SayHello(context.TODO(), &greeter.HelloRequest{Name: "Alex"})
+	gamesClient := games.NewGamesClient(c)
+
+	res2, err := gamesClient.Get(context.TODO(), &games.GetRequest{Id: "1"})
 	if err != nil {
 		panic(err)
 	}
-	log.Println(res.Message)
+	log.Println(res2)
 }

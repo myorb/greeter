@@ -4,8 +4,8 @@ import (
 	"log"
 	"net"
 
-	"github.com/myorb/greeter/games"
-	"github.com/myorb/greeter/greeter"
+	"games/games"
+
 	"google.golang.org/grpc"
 )
 
@@ -19,7 +19,6 @@ func main() {
 
 	s := grpc.NewServer()
 	srv := &server{repository: gamesCollection}
-	greeter.RegisterGreeterServer(s, srv)
 	games.RegisterGamesServer(s, srv)
 	log.Println("This is log form main")
 	if err := s.Serve(lis); err != nil {
