@@ -444,7 +444,7 @@ var file_games_games_proto_rawDesc = []byte{
 	0x72, 0x6d, 0x61, 0x78, 0x18, 0x03, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x0b, 0x2e, 0x67, 0x61, 0x6d,
 	0x65, 0x73, 0x2e, 0x52, 0x6d, 0x61, 0x78, 0x52, 0x04, 0x72, 0x6d, 0x61, 0x78, 0x22, 0x1f, 0x0a,
 	0x0d, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x0e,
-	0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x69, 0x64, 0x32, 0xcd,
+	0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x69, 0x64, 0x32, 0xfb,
 	0x01, 0x0a, 0x05, 0x47, 0x61, 0x6d, 0x65, 0x73, 0x12, 0x27, 0x0a, 0x03, 0x47, 0x65, 0x74, 0x12,
 	0x11, 0x2e, 0x67, 0x61, 0x6d, 0x65, 0x73, 0x2e, 0x47, 0x65, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65,
 	0x73, 0x74, 0x1a, 0x0b, 0x2e, 0x67, 0x61, 0x6d, 0x65, 0x73, 0x2e, 0x47, 0x61, 0x6d, 0x65, 0x22,
@@ -457,8 +457,11 @@ var file_games_games_proto_rawDesc = []byte{
 	0x70, 0x6f, 0x6e, 0x63, 0x65, 0x22, 0x00, 0x12, 0x35, 0x0a, 0x06, 0x44, 0x65, 0x6c, 0x65, 0x74,
 	0x65, 0x12, 0x14, 0x2e, 0x67, 0x61, 0x6d, 0x65, 0x73, 0x2e, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65,
 	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x13, 0x2e, 0x67, 0x61, 0x6d, 0x65, 0x73, 0x2e,
-	0x42, 0x6f, 0x6f, 0x6c, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x63, 0x65, 0x22, 0x00, 0x62, 0x06,
-	0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x42, 0x6f, 0x6f, 0x6c, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x63, 0x65, 0x22, 0x00, 0x12, 0x2c,
+	0x0a, 0x04, 0x53, 0x79, 0x6e, 0x63, 0x12, 0x11, 0x2e, 0x67, 0x61, 0x6d, 0x65, 0x73, 0x2e, 0x47,
+	0x65, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x0b, 0x2e, 0x67, 0x61, 0x6d, 0x65,
+	0x73, 0x2e, 0x47, 0x61, 0x6d, 0x65, 0x22, 0x00, 0x28, 0x01, 0x30, 0x01, 0x62, 0x06, 0x70, 0x72,
+	0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -491,12 +494,14 @@ var file_games_games_proto_depIdxs = []int32{
 	4, // 4: games.Games.Create:input_type -> games.CreateRequest
 	5, // 5: games.Games.Update:input_type -> games.UpdateRequest
 	6, // 6: games.Games.Delete:input_type -> games.DeleteRequest
-	0, // 7: games.Games.Get:output_type -> games.Game
-	0, // 8: games.Games.Create:output_type -> games.Game
-	2, // 9: games.Games.Update:output_type -> games.BoolResponce
-	2, // 10: games.Games.Delete:output_type -> games.BoolResponce
-	7, // [7:11] is the sub-list for method output_type
-	3, // [3:7] is the sub-list for method input_type
+	3, // 7: games.Games.Sync:input_type -> games.GetRequest
+	0, // 8: games.Games.Get:output_type -> games.Game
+	0, // 9: games.Games.Create:output_type -> games.Game
+	2, // 10: games.Games.Update:output_type -> games.BoolResponce
+	2, // 11: games.Games.Delete:output_type -> games.BoolResponce
+	0, // 12: games.Games.Sync:output_type -> games.Game
+	8, // [8:13] is the sub-list for method output_type
+	3, // [3:8] is the sub-list for method input_type
 	3, // [3:3] is the sub-list for extension type_name
 	3, // [3:3] is the sub-list for extension extendee
 	0, // [0:3] is the sub-list for field type_name
@@ -629,6 +634,7 @@ type GamesClient interface {
 	Create(ctx context.Context, in *CreateRequest, opts ...grpc.CallOption) (*Game, error)
 	Update(ctx context.Context, in *UpdateRequest, opts ...grpc.CallOption) (*BoolResponce, error)
 	Delete(ctx context.Context, in *DeleteRequest, opts ...grpc.CallOption) (*BoolResponce, error)
+	Sync(ctx context.Context, opts ...grpc.CallOption) (Games_SyncClient, error)
 }
 
 type gamesClient struct {
@@ -675,12 +681,44 @@ func (c *gamesClient) Delete(ctx context.Context, in *DeleteRequest, opts ...grp
 	return out, nil
 }
 
+func (c *gamesClient) Sync(ctx context.Context, opts ...grpc.CallOption) (Games_SyncClient, error) {
+	stream, err := c.cc.NewStream(ctx, &_Games_serviceDesc.Streams[0], "/games.Games/Sync", opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &gamesSyncClient{stream}
+	return x, nil
+}
+
+type Games_SyncClient interface {
+	Send(*GetRequest) error
+	Recv() (*Game, error)
+	grpc.ClientStream
+}
+
+type gamesSyncClient struct {
+	grpc.ClientStream
+}
+
+func (x *gamesSyncClient) Send(m *GetRequest) error {
+	return x.ClientStream.SendMsg(m)
+}
+
+func (x *gamesSyncClient) Recv() (*Game, error) {
+	m := new(Game)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
 // GamesServer is the server API for Games service.
 type GamesServer interface {
 	Get(context.Context, *GetRequest) (*Game, error)
 	Create(context.Context, *CreateRequest) (*Game, error)
 	Update(context.Context, *UpdateRequest) (*BoolResponce, error)
 	Delete(context.Context, *DeleteRequest) (*BoolResponce, error)
+	Sync(Games_SyncServer) error
 }
 
 // UnimplementedGamesServer can be embedded to have forward compatible implementations.
@@ -698,6 +736,9 @@ func (*UnimplementedGamesServer) Update(context.Context, *UpdateRequest) (*BoolR
 }
 func (*UnimplementedGamesServer) Delete(context.Context, *DeleteRequest) (*BoolResponce, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
+}
+func (*UnimplementedGamesServer) Sync(Games_SyncServer) error {
+	return status.Errorf(codes.Unimplemented, "method Sync not implemented")
 }
 
 func RegisterGamesServer(s *grpc.Server, srv GamesServer) {
@@ -776,6 +817,32 @@ func _Games_Delete_Handler(srv interface{}, ctx context.Context, dec func(interf
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Games_Sync_Handler(srv interface{}, stream grpc.ServerStream) error {
+	return srv.(GamesServer).Sync(&gamesSyncServer{stream})
+}
+
+type Games_SyncServer interface {
+	Send(*Game) error
+	Recv() (*GetRequest, error)
+	grpc.ServerStream
+}
+
+type gamesSyncServer struct {
+	grpc.ServerStream
+}
+
+func (x *gamesSyncServer) Send(m *Game) error {
+	return x.ServerStream.SendMsg(m)
+}
+
+func (x *gamesSyncServer) Recv() (*GetRequest, error) {
+	m := new(GetRequest)
+	if err := x.ServerStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
 var _Games_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "games.Games",
 	HandlerType: (*GamesServer)(nil),
@@ -797,6 +864,13 @@ var _Games_serviceDesc = grpc.ServiceDesc{
 			Handler:    _Games_Delete_Handler,
 		},
 	},
-	Streams:  []grpc.StreamDesc{},
+	Streams: []grpc.StreamDesc{
+		{
+			StreamName:    "Sync",
+			Handler:       _Games_Sync_Handler,
+			ServerStreams: true,
+			ClientStreams: true,
+		},
+	},
 	Metadata: "games/games.proto",
 }
